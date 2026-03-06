@@ -278,12 +278,23 @@
             <p>© 2026 Algorithm Visualization Project. All rights reserved.</p>
         </div>
     </footer>
-       <script>
+    <script>
       function runAlgorithm(algo) {
-        
-        fetch("run.php?algo=" + encodeURIComponent(algo))
-          .then((res) => res.text());
-          
+        fetch("/run?algo=" + encodeURIComponent(algo))
+          .then((res) => {
+            if (!res.ok) {
+              return res.text().then((msg) => {
+                throw new Error(msg || "Failed to run algorithm");
+              });
+            }
+            return res.text();
+          })
+          .then((msg) => {
+            console.log(msg);
+          })
+          .catch((err) => {
+            alert(err.message);
+          });
       }
     </script>
 </body>
