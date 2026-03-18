@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const { execFile } = require("child_process");
+const { spawn } = require("child_process");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -32,14 +32,17 @@ app.get("/run", (req, res) => {
     return;
   }
 
-  execFile(exePath, (error) => {
-    if (error) {
-      res.status(500).send(`Failed to execute ${executables[algo]}`);
-      return;
-    }
-
-    res.send(`${algo} executed successfully. Program: ${executables[algo]}`);
-  });
+  try {
+    const child = spawn(exePath, {
+      detached: true,
+      stdio: "ignore",
+      windowsHide: false,
+    });
+    child.unref();
+    res.send(`${algo} started successfully. Program: ${executables[algo]}`);
+  } catch (error) {
+    res.status(500).send(`Failed to execute ${executables[algo]}`);
+  }
 });
 
 app.listen(port, () => {
