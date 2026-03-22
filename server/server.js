@@ -13,16 +13,20 @@ const executables = {
   bubble: "bubblesort.exe",
   selection: "selection.exe",
   insertion: "insertion.exe",
-  dijkstra: "Dijestra.exe",
+  dijkstra: "dijkstra.exe",
 };
 
 app.use(express.static(publicDir));
 
 app.get("/run", (req, res) => {
-  const algo = String(req.query.algo || "").toLowerCase().trim();
+  const algo = String(req.query.algo || "")
+    .toLowerCase()
+    .trim();
 
   if (!Object.prototype.hasOwnProperty.call(executables, algo)) {
-    res.status(400).send("Invalid algorithm. Use: bubble, selection, insertion, dijkstra.");
+    res
+      .status(400)
+      .send("Invalid algorithm. Use: bubble, selection, insertion, dijkstra.");
     return;
   }
 

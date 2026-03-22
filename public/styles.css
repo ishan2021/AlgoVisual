@@ -554,6 +554,8 @@ body {
   overflow: hidden;
   transition: all 0.4s;
   animation: fadeIn 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-card-bg {
@@ -636,11 +638,14 @@ body {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  margin-top: auto;
   position: relative;
   z-index: 1;
 }
 
 .social-link {
+  min-width: 100px;
+  text-align: center;
   padding: 0.5rem 1rem;
   background: rgba(79, 70, 229, 0.1);
   border: 1px solid rgba(79, 70, 229, 0.2);
