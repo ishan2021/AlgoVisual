@@ -4,7 +4,7 @@ const fs = require("fs");
 const { spawn } = require("child_process");
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = 3000;
 const rootDir = path.resolve(__dirname, "..");
 const publicDir = path.join(rootDir, "public");
 const binDir = path.join(rootDir, "native", "bin");

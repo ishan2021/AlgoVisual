@@ -393,6 +393,7 @@
       function runAlgorithm(algo) {
         fetch("/run?algo=" + encodeURIComponent(algo))
           .then((res) => {
+            console.log(res);
             if (!res.ok) {
               return res.text().then((msg) => {
                 throw new Error(msg || "Failed to run algorithm");
