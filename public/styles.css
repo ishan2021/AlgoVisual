@@ -407,6 +407,34 @@ body {
   position: relative;
   overflow: hidden;
   animation: fadeIn 0.8s ease-out;
+  display: flex;
+}
+
+.algo-card-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.algo-btn {
+  width: 100%;
+  margin-top: auto;
+  padding: 1rem;
+  background: linear-gradient(
+    135deg,
+    var(--primary-blue),
+    var(--primary-purple)
+  );
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
 }
 
 .algo-card::before {
